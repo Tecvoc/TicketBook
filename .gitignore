@@ -1,0 +1,9 @@
+.sw[poa]
+
+__pycache__
+
+.DS_Store
+.envrc
+.env
+
+db.sqlite3
