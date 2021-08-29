@@ -1,10 +1,11 @@
 """
 WSGI config for movie_ticket_project project.
 
-It exposes the WSGI callable as a module-level variable named ``application``.
-
-For more information on this file, see
-https://docs.djangoproject.com/en/2.2/howto/deployment/wsgi/
+/* Copyright (C) - All Rights Reserved
+ * Unauthorized copying of this file, via any medium is strictly prohibited
+ * Proprietary and confidential
+ * Written by Nilanjan Bala <nilanjan1@tutanota.com>, August 2021
+ */
 """
 
 import os

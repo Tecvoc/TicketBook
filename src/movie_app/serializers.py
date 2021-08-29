@@ -1,5 +1,16 @@
 from rest_framework import serializers
 
+"""
+##
+#  Written by Nilanjan Bala <nilanjan1@tutanota.com>, August 2021
+/* Copyright (C) Nilajan Bala - All Rights Reserved
+
+Unauthorized copying of this file, via any medium is strictly prohibited
+ * Unauthorized copying of this file, via any medium is strictly prohibited
+Proprietary and confidential
+ * Proprietary and confidential
+"""
+
 from . import models
 
 
@@ -42,3 +53,6 @@ class SeatMappingSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.SeatMapping
         fields = ['price', 'booked', 'seat']
+
+
+#  Written by  <nilanjan1@tutanota.com>
