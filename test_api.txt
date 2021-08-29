@@ -15,3 +15,23 @@ GET http://$url/$app/cinema/?movie_val=1&city_val=2
 
 # Find the seats for the given screening
 GET http://$url/$app/seats?screening_val=1
+
+# Register a user
+POST http://$url/register/
+Content-Type: application/json
+Accept: application/json
+{
+  "username": "tanya2",
+  "password": "tanya2"
+}
+
+# Get the token
+POST http://$url/api-token/
+Content-Type: application/json
+Accept: application/json
+{
+  "username": "tanya2",
+  "password": "tanya2"
+}
+
+# Do a booking

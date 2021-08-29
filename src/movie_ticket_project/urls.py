@@ -12,7 +12,11 @@
 from django.contrib import admin
 from django.urls import include, path
 
+from . import views
+
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', include('movie_app.urls'))
+    path('api/', include('movie_app.urls')),
+    path('api-token/', views.get_auth_token),
+    path('register/', views.signup)
 ]

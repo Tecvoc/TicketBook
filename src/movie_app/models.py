@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.db import models
 
 """
@@ -8,13 +9,6 @@ from django.db import models
 """
 
 #  Written by Nilanjan Bala <nilanjan1@tutanota.com>, August 2021
-
-
-class User(models.Model):
-    username = models.CharField(max_length=100)
-
-    def __str__(self):
-        return self.username
 
 
 class City(models.Model):
