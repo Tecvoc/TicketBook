@@ -1,12 +1,12 @@
-FROM python:3.8
+FROM python:3.8-slim
 
 RUN mkdir /home/work
 
-COPY requirements.txt /home/work
-COPY src /home/work
 
 WORKDIR /home/work
 
-RUN pip install -r requirements.txt
+COPY requirements.txt .
+RUN pip install -r requirements.txt && rm -f requirements.txt
 
-ENTRYPOINT ["python", "manage.py", "runserver"]
+COPY fixtures/movie_app_data.json .
+COPY src .

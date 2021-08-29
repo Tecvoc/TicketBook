@@ -1,0 +1,17 @@
+#$url=localhost:8000
+#$app=api
+
+# Get the cities
+GET http://$url/$app/city/
+
+# Get the movies for a particular city
+GET http://$url/$app/movie/?city_val=1
+
+# Get the cinemas in which a movie is playing along with their showtime
+GET http://$url/$app/cinema/?movie_val=1
+
+# The same api can be filtered along with a city filter too
+GET http://$url/$app/cinema/?movie_val=1&city_val=2
+
+# Find the seats for the given screening
+GET http://$url/$app/seats?screening_val=1

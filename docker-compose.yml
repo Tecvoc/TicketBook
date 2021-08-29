@@ -1,0 +1,24 @@
+version: "3.9"
+
+services:
+    db:
+        image: postgres:13.4
+        environment:
+            - POSTGRES_DB=postgres
+            - POSTGRES_USER=postgres
+            - POSTGRES_PASSWORD=postgres
+    web:
+        build: .
+        command: >
+             sh -c "sleep 10 &&
+             python manage.py migrate &&
+             python manage.py loaddata movie_app_data.json &&
+             rm -f movie_app_data.json &&
+             python manage.py runserver --noreload 0.0.0.0:8080"
+        ports:
+            - "8080:8080"
+        links:
+            - db
+        environment:
+            - DJANGO_SETTINGS_MODULE=movie_ticket_project.docker_settings
+        restart: on-failure:5
