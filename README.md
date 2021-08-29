@@ -1,7 +1,7 @@
-/* Copyright (C) Nilajan Bala - All Rights Reserved
+ * Copyright (C) Nilajan Bala - All Rights Reserved
  * Unauthorized copying of this file, via any medium is strictly prohibited
  * Proprietary and confidential
- */  Written by Nilanjan Bala <nilanjan1@tutanota.com>, August 2021
+ * Written by Nilanjan Bala <nilanjan1@tutanota.com>, August 2021
 
 
 ## A sample app for bookig movie tickets
