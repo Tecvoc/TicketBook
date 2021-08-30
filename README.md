@@ -49,3 +49,5 @@ The api testing flow is included in the folder api_tests/
 To test api in the docker, see the structure defined in the file api_tests/test_docker_api.txt
 
 To test api in the local, see the structure defined in the file api_tests/test_api.txt
+
+The architecture of db is in ticket_book_diagram.png
