@@ -1,5 +1,5 @@
 from django.contrib.auth.models import User
-from django.db import models
+from django.db import models, transaction
 
 """
 /* Copyright (C) - All Rights Reserved
@@ -70,6 +70,21 @@ class Screening(models.Model):
         return f"{str(self.movie.name)} in {str(self.cinema.name)} at {self.start_time}"
 
 
+class SeatMappingManager(models.Manager):
+    def book_tickets(self, seats, user_obj):
+        if len(seats) != SeatMapping.objects.filter(seat__in=seats,
+                                                    booked=False).count():
+            raise ValueError("tickets already booked")
+        seat_objs = SeatMapping.objects.select_for_update(nowait=True).filter(
+            seat__in=seats, booked=False)
+        with transaction.atomic():
+            for seat_obj in seat_objs:
+                Booking.objects.create(seat=seat_obj,
+                                       user=user_obj,
+                                       price=seat_obj.price)
+            seat_objs.update(booked=True)
+
+
 class SeatMapping(models.Model):
     screening = models.ForeignKey(
         Screening,
@@ -81,12 +96,13 @@ class SeatMapping(models.Model):
     )
     price = models.DecimalField(max_digits=8, decimal_places=2)
     booked = models.BooleanField(default=False)
+    objects = SeatMappingManager()
 
 
 class Booking(models.Model):
-    booking_id = models.OneToOneField(SeatMapping, on_delete=models.CASCADE)
-    user_id = models.ForeignKey(User,
-                                on_delete=models.CASCADE,
-                                related_name="bookings")
+    seat = models.OneToOneField(SeatMapping, on_delete=models.CASCADE)
+    user = models.ForeignKey(User,
+                             on_delete=models.CASCADE,
+                             related_name="bookings")
     booking_date = models.DateTimeField(auto_now_add=True)
     price = models.DecimalField(max_digits=8, decimal_places=2)

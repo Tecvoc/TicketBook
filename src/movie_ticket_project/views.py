@@ -15,7 +15,7 @@ def signup(request):
         username = request.data["username"]
         password = request.data["password"]
         user = User.objects.create_user(username=username, password=password)
-        return JsonResponse({"token": user.auth_token.key, "id": user.pk})
+        return JsonResponse({"token": user.auth_token.key, "id": user.id})
     except Exception as ex:
         print(ex)
         return JsonResponse({"error": "error creating user"}, status=500)

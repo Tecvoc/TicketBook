@@ -21,4 +21,5 @@ urlpatterns = [
     path('movie/', views.get_movies),
     path('cinema/', views.get_cinemas),
     path('seats/', views.get_seats),
+    path('book_ticket/', views.book_ticket),
 ]

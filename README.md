@@ -6,6 +6,8 @@
 
 ## A sample app for bookig movie tickets
 
+* Python 3.8, Django 3.2, along with the django rest framework is used to build the application
+* Token Authentication is used so that only registered users can book a ticket
 * For simplicity it is assumed that each cinema hall has only one auditorium
 
 
@@ -41,3 +43,9 @@ http://0.0.0.0:8080/api/city/
 # To stop it, do
 docker-compose stop
 ```
+
+The api testing flow is included in the folder api_tests/
+
+To test api in the docker, see the structure defined in the file api_tests/test_docker_api.txt
+
+To test api in the local, see the structure defined in the file api_tests/test_api.txt

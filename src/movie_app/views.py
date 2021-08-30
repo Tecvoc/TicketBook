@@ -1,7 +1,12 @@
+from django.contrib.auth.models import User
+from django.db import DatabaseError
 from django.http import JsonResponse
 from django.shortcuts import render
 from rest_framework import viewsets
-from rest_framework.decorators import api_view
+from rest_framework.authentication import TokenAuthentication
+from rest_framework.decorators import (api_view, authentication_classes,
+                                       permission_classes)
+from rest_framework.permissions import IsAuthenticated
 
 from . import models, serializers
 
@@ -65,6 +70,32 @@ def get_seats(request):
         print(ke)
         return JsonResponse({"error": "screening value not present"},
                             status=500)
+    except Exception as ex:
+        print(ex)
+        return JsonResponse({"error": "Server Error"}, status=500)
+
+
+@api_view(http_method_names=['POST'])
+@authentication_classes([TokenAuthentication])
+@permission_classes([IsAuthenticated])
+def book_ticket(request):
+    try:
+        seats = [int(x) for x in request.data["seats"]]
+        models.SeatMapping.objects.book_tickets(seats, request.user)
+        return JsonResponse({"success": "booked_tickets"})
+    except DatabaseError as de:
+        print(de)
+        return JsonResponse(
+            {
+                "error":
+                "Sorry, some of the seats are already booked, please try again"
+            },
+            status=500)
+    except ValueError as ve:
+        print(ve)
+        return JsonResponse(
+            {"error": "Please choose tickets which are not booked"},
+            status=500)
     except Exception as ex:
         print(ex)
         return JsonResponse({"error": "Server Error"}, status=500)

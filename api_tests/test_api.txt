@@ -35,3 +35,10 @@ Accept: application/json
 }
 
 # Do a booking
+POST http://$url/api/book_ticket/
+Content-Type: application/json
+Accept: application/json
+Authorization: Token token_value
+{
+  "seats": [5, 6]
+}
